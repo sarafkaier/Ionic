@@ -18,11 +18,11 @@ export class AppComponent {
     },
     {
       title: 'Liste des catégories',
-      url: '/categorie',
+      url: '/categorie-page',
       icon: 'book'
     },{
       title: 'Quiz',
-      url: '/quiz-home',
+      url: '/quizz-page',
       icon: 'grid'
     }
 
