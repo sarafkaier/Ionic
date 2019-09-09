@@ -17,21 +17,22 @@ export class QuizzPagePage implements OnInit {
   selected = 0;
   categorie = null;
   question = null;
-  questions: Question[] = null;
+  questions: Question[] = [];
   score = 0;
   compteur = 1;
   categorieId = 0;
 
   constructor(private storage: Storage, private questionService: QuestionService, private categorieService: CategorieService, private router: Router) {
-    storage.get('categorieId').then( (val) => {
-      this.categorieId = val;
-      this.categorie = this.categorieService.get(this.categorieId);
-      this.questions = this.questionService.getRandom(this.categorieId);
-      this.question = this.questions[0];
-    })
+    
    }
 
   ngOnInit() {
+    this.storage.get('categorieId').then( (val) => {
+      this.categorieId = val;
+      this.categorie = this.categorieService.get(this.categorieId);
+      this.questions = this.questionService.getRandom(this.categorieId, this.questions);
+      this.question = this.questions[0];
+    });
   }
 
   onChange($event){

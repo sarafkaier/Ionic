@@ -2,18 +2,29 @@ import { Injectable } from '@angular/core';
 import { Question } from './question';
 import { CategorieService } from '../services/categorie.service';
 import { Categorie } from '../services/categorie';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Observer } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
 
-  questions: Question[] = null;
+  questions: Observer<Question[]>;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getAll() {
-  	return this.questions;
+  getQuestions(){
+    this.httpClient.get<Question[]>('http://localhost:8080/api/question').subscribe((data) => {
+      this.questions.next(data);
+    });
+  }
+
+  getQuestionsObservable(): Observable<Question[]>{
+    return new Observable(observer => {
+      this.questions = observer;
+    })
   }
 
   get(id: number){
@@ -21,14 +32,14 @@ export class QuestionService {
   }
 
   count(){
-    return this.questions.length;
+    /*return this.questions.length;*/
   }
 
-  getRandom(categorieId: number) {
+  getRandom(categorieId: number, questions: Question[]) {
 	let questionsTemp: Question[] = []
 	let tableauIntermediaire: Question[] = []
 	let tableauRandom: number[] = []
-	this.questions.forEach(function(question){
+	questions.forEach(function(question){
 		if(question.categorieId==categorieId){
 			tableauIntermediaire.push(question);
 		}
