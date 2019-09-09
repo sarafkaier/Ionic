@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
@@ -14,30 +14,38 @@
     <p id="question">La question</p>
     <ion-list>
       <ion-radio-group>
-        <ion-item color="dark">
-          <ion-radio value="1"></ion-radio>
-          <ion-label >Choix 1 : La première réponse</ion-label>
-        </ion-item>
-        <ion-item  color="success">
-          <ion-radio value="2"></ion-radio>
-          <ion-label>Choix 2 : La deuxième</ion-label>
-        </ion-item>
-        <ion-item color="dark">
-          <ion-radio value="3"></ion-radio>
-          <ion-label>Choix 3 :</ion-label>
-        </ion-item>
-        <ion-item color="success">
-          <ion-radio value="4"></ion-radio>
-          <ion-label>Choix 4 : </ion-label>
-        </ion-item>
+        <div class="item">
+          <ion-item color="light">
+            <ion-radio value="1"></ion-radio>
+            <ion-label >Choix 1 : La première réponse</ion-label>
+          </ion-item>
+        </div>
+        <div class="item">
+          <ion-item  color="primary">
+            <ion-radio value="2"></ion-radio>
+            <ion-label>Choix 2 : La deuxième</ion-label>
+          </ion-item>
+        </div>
+        <div class="item">
+          <ion-item color="light">
+            <ion-radio value="3"></ion-radio>
+            <ion-label>Choix 3 :</ion-label>
+          </ion-item>
+        </div>
+        <div class="item">
+          <ion-item color="primary">
+            <ion-radio value="4"></ion-radio>
+            <ion-label>Choix 4 : </ion-label>
+          </ion-item>
+        </div>
       </ion-radio-group>
     </ion-list>
-    <ion-button color="dark">Valider</ion-button>
+    <ion-button color="medium" class="bouton">Valider</ion-button>
   </div>
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar color="dark">
+    <ion-toolbar>
       <ion-title>Accueil</ion-title>
     </ion-toolbar>
 </ion-footer>
