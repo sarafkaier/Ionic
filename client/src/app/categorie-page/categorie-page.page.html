@@ -6,18 +6,11 @@
 
 <ion-content>
   <h1>Choisissez votre catégorie :</h1>
-  <div id="section">
-    <ion-button color="light">Littérature</ion-button>
-    <ion-button color="tertiary">Sciences</ion-button>
-  </div>
-  <div id="section">
-    <ion-button color="warning">Histoire/Géographie</ion-button>
-    <ion-button color="medium">Cinéma</ion-button>
-  </div>
-  <div id="section">
-    <ion-button color="success">Musique</ion-button>
-    <ion-button color="dark">People</ion-button>
-  </div>
+  <ion-list>
+    <ion-item *ngFor="let categorie of categories" (click)="onClickCategorie(categorie.id)">
+        <ion-button color="light">{{categorie.name}}</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>

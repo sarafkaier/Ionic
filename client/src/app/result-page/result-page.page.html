@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <h1>Félicitations ! Vous avez obtenu le score de ?/? !</h1>
+  <h1>Félicitations ! Vous avez obtenu le score de {{score}}/3 !</h1>
   <ion-button color="success">Nouveau Quiz ?</ion-button>
-  <ion-button color="dark">Retour au menu</ion-button>
+  <ion-button color="dark" retourMenu($event)>Retour au menu</ion-button>
 </ion-content>
 
 <ion-footer>
