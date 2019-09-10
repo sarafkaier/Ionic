@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
-import {ServiceCategorieService} from '../services/service-categorie.service';
 import { Categorie } from '../services/categorie';
+import {ServiceCategorieService} from '../services/service-categorie.service';
+import { NavigationExtras, Router } from '@angular/router';
+
 
 @Component({
-  selector: 'app-categories-admin',
-  templateUrl: './categories-admin.page.html',
-  styleUrls: ['./categories-admin.page.scss'],
+  selector: 'app-categorie-for-admin',
+  templateUrl: './categorie-for-admin.page.html',
+  styleUrls: ['./categorie-for-admin.page.scss'],
 })
-export class CategoriesAdminPage implements OnInit {
+export class CategorieForAdminPage implements OnInit {
 
   categories: Categorie[] = null;
 
-  constructor(private categorieService: ServiceCategorieService, private router: Router) {
+  constructor (private categorieService: ServiceCategorieService, private router: Router) {
     this.getCategories();
-  }
+   }
 
   ngOnInit() {
   }
@@ -30,4 +31,5 @@ export class CategoriesAdminPage implements OnInit {
     this.router.navigate(['home'], navigationExtras);
  
   }
+
 }
