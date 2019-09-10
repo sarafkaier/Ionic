@@ -10,9 +10,6 @@ export class InscriptionPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-
-  
+  } 
 
 }
