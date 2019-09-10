@@ -9,22 +9,11 @@
 
 <ion-content>
   <h1>Choisissez votre catégorie :</h1>
-  <div id="section">
-    <ion-button color="light">Littérature</ion-button>
-  </div>
-  <div id="section">
-    <ion-button color="primary">Sciences</ion-button>
-  </div>
-  <div id="section">
-    <ion-button color="light">Histoire/Géographie</ion-button>
-  </div>
-  <div id="section">
-    <ion-button color="primary">Cinéma</ion-button>
-  </div>
-  <div id="section">
-    <ion-button color="light">Musique</ion-button>
-  </div>
-  <div id="section">
-    <ion-button color="primary">People</ion-button>
-  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let categorie of categories" (click)="goToQuiz(categorie.id)">
+        <ion-button color="light">{{categorie.name}}</ion-button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
