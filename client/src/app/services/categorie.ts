@@ -4,10 +4,6 @@ sara
     title: string;
     description: string;
     image: any;
-}
-	id: number;
-	name: string;
-	createdAt: Date;
-	updatedAt: Date;
+
 }
 
