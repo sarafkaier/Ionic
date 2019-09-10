@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="new">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Catégories de questions</ion-title>
+    <ion-buttons slot="start"> <!--groupement de boutons en début (start) ou fin (end) de toolbar-->
+      <ion-back-button defaultHref="home" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <div class="jumbotron">
+      <ion-img src="https://picsum.photos/800/300"></ion-img>
+    </div>
+
+
+    <h4 class="ion-text-center">Liste de catégories </h4>
+    <p class="text-center"><button type="button"  class="btn text-center colorType">Ajouter une catégorie</button></p>
+
+    <ion-grid *ngFor="let categorie of categories">
+      <ion-row >
+        <ion-col class="ion-text-center" class="ion-padding">
+          <ion-card (click)="onClick(categorie.id)" class="ion-padding">
+            <img [src]="categorie.image" class="imgSize"/><br>
+            <ion-label class="text-info ion-text-center">
+              <h5>{{categorie.title}}</h5>
+            </ion-label>
+            <ion-buttons class="ion-margin">
+              <span><button class="btn btn-warning ion-padding ion-margin disabled" type="button">Modifier </button></span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span><button class="btn btn-danger ion-padding ion-margin disabled" type="button" >Supprimer </button></span>
+            </ion-buttons>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p class="ion-text-center"><button type="button" class=" btn colorType text-center">Ajouter une catégorie</button></p>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <br>
+    <p class="ion-text-center">A Random Name Company © 2019</p>
+  </ion-toolbar>
+</ion-footer>
