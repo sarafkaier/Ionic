@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { CategorieService } from '../services/categorie.service';
+import { Categorie } from '../services/categorie';
+
+import { NavController } from '@ionic/angular';
+
+
+
+
+
+
 
 @Component({
   selector: 'app-categorie-page',
@@ -7,9 +17,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriePagePage implements OnInit {
 
-  constructor() { }
+  private categories: Categorie[] = [];
+
+  constructor( private categorieService: CategorieService, 
+               private navCtrl: NavController) {
+
+  }
+
+
 
   ngOnInit() {
+    this.categorieService.getCategories();
+    this.categorieService.getCategoriesObservable().subscribe((data) => {
+      this.categories = data;
+    });
+
   }
+
+
+  goToQuiz(id){
+    this.navCtrl.navigateForward('quiz/' + id);
+
+  }
+  
+
+  
 
 }

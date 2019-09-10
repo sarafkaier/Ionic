@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-result-page',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultPagePage implements OnInit {
 
-  constructor() { }
+  private score = this.route.snapshot.params['score'];
+  private categorieId = this.route.snapshot.params['categorieId'];
+
+
+  constructor(private route: ActivatedRoute,
+              private navCtrl: NavController) { 
+  		
+  }
 
   ngOnInit() {
   }
+
+
+
+  goToCategorie(){
+    this.navCtrl.navigateForward('categorie');
+  }
+
+
 
 }

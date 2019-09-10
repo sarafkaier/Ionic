@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -8,8 +9,8 @@ const routes: Routes = [
   { path: 'quizz-page', loadChildren: './quizz-page/quizz-page.module#QuizzPagePageModule' },
   { path: 'result-page', loadChildren: './result-page/result-page.module#ResultPagePageModule' },
   { path: 'categorie-page', loadChildren: './categorie-page/categorie-page.module#CategoriePagePageModule' },
-  { path: 'inscription', loadChildren: './inscription/inscription.module#InscriptionPageModule' },  { path: 'categorie-for-admin', loadChildren: './categorie-for-admin/categorie-for-admin.module#CategorieForAdminPageModule' },
-
+  { path: 'inscription', loadChildren: './inscription/inscription.module#InscriptionPageModule' },
+  { path: 'categorie-for-admin', loadChildren: './categorie-for-admin/categorie-for-admin.module#CategorieForAdminPageModule' },
 
 ];
 
@@ -20,4 +21,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 
