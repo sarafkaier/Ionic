@@ -7,7 +7,7 @@
 <ion-content>
   <h1>Choisissez votre catégorie :</h1>
   <ion-list>
-    <ion-item *ngFor="let categorie of categories" (click)="onClickCategorie(categorie.id)">
+    <ion-item *ngFor="let categorie of categories" (click)="goToQuiz(categorie.id)">
         <ion-button color="light">{{categorie.name}}</ion-button>
     </ion-item>
   </ion-list>

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Storage } from '@ionic/storage';
-import { NavigationExtras } from '@angular/router';
-import { CategorieService } from '../services/categorie.service';
-import { Categorie } from '../services/categorie';
 import { QuestionService } from '../services/question.service';
 import { Question } from '../services/question';
+import { ActivatedRoute } from '@angular/router';
+import { Categorie } from '../services/categorie';
+import { CategorieService } from '../services/categorie.service';
+
+import { ViewChild } from '@angular/core';
+import { IonSlides, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-quizz-page',
@@ -14,45 +15,64 @@ import { Question } from '../services/question';
 })
 export class QuizzPagePage implements OnInit {
 
-  selected = 0;
-  categorie = null;
-  question = null;
-  questions: Question[] = [];
-  score = 0;
-  compteur = 1;
-  categorieId = 0;
+  private categorieId = this.route.snapshot.params['categorieId'];
 
-  constructor(private storage: Storage, private questionService: QuestionService, private categorieService: CategorieService, private router: Router) {
+  private categorie: Categorie = new Categorie;
+  private questions: Question[] = [];
+
+  private compteur: number = 1;
+
+  private score: number = 0;
+
+  @ViewChild('slides', {read: '', static: true}) ionSlides: IonSlides;
+
+  
+
+  constructor(private questionService: QuestionService,
+              private categorieService: CategorieService,
+              private route: ActivatedRoute,
+              private navCtrl: NavController) {
     
    }
 
   ngOnInit() {
-    this.storage.get('categorieId').then( (val) => {
-      this.categorieId = val;
-      this.categorie = this.categorieService.get(this.categorieId);
-      this.questions = this.questionService.getRandom(this.categorieId, this.questions);
-      this.question = this.questions[0];
+
+    this.categorieService.getCategorie(this.categorieId);
+    this.categorieService.getCategorieObservable().subscribe((data) => {
+      this.categorie = data;
     });
+
+
+    this.questionService.getQuestions(this.categorieId);
+    this.questionService.getQuestionsObservable().subscribe(data => {
+      this.questions = data
+    });
+
+    this.score = 0;
   }
 
-  onChange($event){
-  	console.log($event.detail.value);
-  	this.selected = $event.detail.value;
-  }
+  onChange(event, goodAnswer){
 
-  onValidate($event) {
-  	if(this.selected == this.question.bonneReponse){
-  		this.score++;
-  	}
-  	if(this.compteur < (this.questions.length)){
-  		this.question = this.questions[this.compteur];
-  		this.compteur++;
-  	}
-  	else {
-      this.storage.set('score', this.score);
-      this.storage.set('categorieId', this.categorieId);
-  		this.router.navigate(['result-page']);
-  	}
+
+
+    parseInt(event.detail.value) === goodAnswer ? this.score += 1 : this.score+=0 ;
+
+    this.ionSlides.isEnd().then((result) =>{
+       if(result){
+        this.navCtrl.navigateForward('result/' + this.score + "/" + this.categorieId);
+       } else {
+        this.ionSlides.slideNext();
+       }
+      });
+    
+    
+    
+ 
+
+    
   }
+  
+
+  
 
 }

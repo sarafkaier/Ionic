@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class CategorieService {
 
   categories: Observer<Categorie[]>;
+  categorie: Observer<Categorie>;
 
   constructor( private httpClient: HttpClient) {
 
@@ -30,14 +31,18 @@ export class CategorieService {
     })
   }
 
- 
-
-  get(id: number) {
-
-  	if (/*id < 0 || id >= this.categories.length*/ true) {
-  		return null;
-  	}
-  	return this.categories[id];
+  getCategorie(id){
+    this.httpClient.get<Categorie>('http://localhost:8080/api/categorie/' + id).subscribe((data) => {
+      this.categorie.next(data);
+    });
   }
+
+  getCategorieObservable(): Observable<Categorie>{
+    return new Observable(observer => {
+      this.categorie = observer;
+    })
+  }
+
+
 
 }

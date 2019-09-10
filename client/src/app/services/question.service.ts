@@ -15,8 +15,8 @@ export class QuestionService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getQuestions(){
-    this.httpClient.get<Question[]>('http://localhost:8080/api/question').subscribe((data) => {
+  getQuestions(categorieId){
+    this.httpClient.get<Question[]>('http://localhost:8080/api/question/categorie/' + categorieId).subscribe((data) => {
       this.questions.next(data);
     });
   }
@@ -27,40 +27,6 @@ export class QuestionService {
     })
   }
 
-  get(id: number){
-    return this.questions[id];
-  }
 
-  count(){
-    /*return this.questions.length;*/
-  }
-
-  getRandom(categorieId: number, questions: Question[]) {
-	let questionsTemp: Question[] = []
-	let tableauIntermediaire: Question[] = []
-	let tableauRandom: number[] = []
-	questions.forEach(function(question){
-		if(question.categorieId==categorieId){
-			tableauIntermediaire.push(question);
-		}
-	})
-  	for(let i=0; i < 3; i++){
-  		let compteur = 0
-  		let random = Math.floor(Math.random() * tableauIntermediaire.length);
-  		while(compteur < tableauRandom.length){
-  			if (tableauRandom[compteur]==random){
-  				random = Math.floor(Math.random() * tableauIntermediaire.length);
-  				compteur = -1;
-  			}
-  			compteur++;
-  		}
-  		tableauRandom.push(random);
-  		tableauIntermediaire.forEach(function(question){
-  			if(random==question.id){
-  				questionsTemp.push(question);
-  			}
-  		})
-  	}
-  	return questionsTemp;
-  }
+  
 }
